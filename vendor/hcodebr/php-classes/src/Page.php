@@ -12,13 +12,13 @@ class Page {
         "data" => []
     ];
 
-    public function __construct($opts = array())
+    public function __construct($opts = array(), $tplDir = "/views/")
     {
         $this->options = array_merge($this->defaults, $opts);
 
         $config = array(
-            "tpl_dir"       => "{$_SERVER["DOCUMENT_ROOT"]}/ecommerce-hcode/views/",
-            "cache_dir"     => "{$_SERVER["DOCUMENT_ROOT"]}/ecommerce-hcode/views-cache/",
+            "tpl_dir"       => "{$_SERVER["DOCUMENT_ROOT"]}{$tplDir}",
+            "cache_dir"     => "{$_SERVER["DOCUMENT_ROOT"]}/views-cache/",
             "debug"         => false
         );
 
