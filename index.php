@@ -247,7 +247,7 @@ $app->post("/admin/categories/:idcategory", function($idcategory) {
 	exit;
 });
 
-$app->get("/categories/:idcatagory", function($idcategory) {
+$app->get("/categories/:idcategory", function($idcategory) {
 	$category = new Category();
 	$category->get((int)$idcategory);
 
