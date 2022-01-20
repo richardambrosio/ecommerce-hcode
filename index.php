@@ -184,7 +184,7 @@ $app->post("/admin/forgot/reset", function() {
 
 $app->get("/admin/categories", function() {
 	User::verifyLogin();
-	
+
 	$categories = Category::listAll();
 
 	$page = new PageAdmin();
@@ -195,14 +195,14 @@ $app->get("/admin/categories", function() {
 
 $app->get("/admin/categories/create", function() {
 	User::verifyLogin();
-	
+
 	$page = new PageAdmin();
 	$page->setTpl('categories-create');
 });
 
 $app->post("/admin/categories/create", function() {
 	User::verifyLogin();
-	
+
 	$category = new Category();
 
 	$category->setData($_POST);
@@ -214,7 +214,7 @@ $app->post("/admin/categories/create", function() {
 
 $app->get("/admin/categories/:idcategory/delete", function($idcategory) {
 	User::verifyLogin();
-	
+
 	$category = new Category();
 	$category->get((int)$idcategory);
 	$category->delete();
@@ -225,7 +225,7 @@ $app->get("/admin/categories/:idcategory/delete", function($idcategory) {
 
 $app->get("/admin/categories/:idcategory", function($idcategory) {
 	User::verifyLogin();
-	
+
 	$category = new Category();
 	$category->get((int)$idcategory);
 
@@ -237,7 +237,7 @@ $app->get("/admin/categories/:idcategory", function($idcategory) {
 
 $app->post("/admin/categories/:idcategory", function($idcategory) {
 	User::verifyLogin();
-	
+
 	$category = new Category();
 	$category->get((int)$idcategory);
 	$category->setData($_POST);
@@ -245,6 +245,17 @@ $app->post("/admin/categories/:idcategory", function($idcategory) {
 
 	header('Location: /admin/categories');
 	exit;
+});
+
+$app->get("/categories/:idcatagory", function($idcategory) {
+	$category = new Category();
+	$category->get((int)$idcategory);
+
+	$page = new Page();
+	$page->setTpl("category", array(
+		'category' => $category->getValues(),
+		'products' => []
+	));
 });
 
 $app->run();
