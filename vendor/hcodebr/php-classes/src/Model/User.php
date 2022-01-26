@@ -132,7 +132,7 @@ class User extends Model {
         ));
     }
 
-    public function getForgot($email) {
+    public static function getForgot($email) {
         $sql = new Sql();
 
         $results = $sql->select('SELECT *
