@@ -65,7 +65,7 @@ class User extends Model {
         if (password_verify($password, $data['despassword'])) {
             $user = new User();
 
-            $data['desperson'] = utf8_encode($data['desperson']);
+            $data['desperson'] = $data['desperson'];
             $user->setData($data);
             
             $_SESSION[User::SESSION] = $user->getValues();
@@ -109,7 +109,7 @@ class User extends Model {
             :nrphone, 
             :inadmin
         )", array(
-            ":desperson" => utf8_decode($this->getdesperson()),
+            ":desperson" => $this->getdesperson(),
             ":deslogin" => $this->getdeslogin(),
             ":despassword" => User::getPasswordHash($this->getdespassword()),
             ":desemail" => $this->getdesemail(),
@@ -134,7 +134,7 @@ class User extends Model {
         ));
 
         $data  =$results[0];
-        $data['desperson'] = utf8_encode($data['desperson']);
+        $data['desperson'] = $data['desperson'];
 
         $this->setData($data);
     }
@@ -152,7 +152,7 @@ class User extends Model {
             :inadmin
         )", array(
             ":iduser" => $this->getiduser(),
-            ":desperson" => utf8_decode($this->getdesperson()),
+            ":desperson" => $this->getdesperson(),
             ":deslogin" => $this->getdeslogin(),
             ":despassword" => $this->getdespassword(),
             ":desemail" => $this->getdesemail(),
